@@ -1,0 +1,346 @@
+# importing neccessary libraries
+import requests
+import statistics
+from bs4 import BeautifulSoup
+from selenium import webdriver
+
+# retrieve the information from the webpage using "get()"
+page0 = requests.get('https://www.acemicromatic.net/product_cat/milling/')
+print(page0.content)
+
+b'<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n'
+# the given website is restricted 
+
+# here an API key is used to bypass the 403 error to scrape the website
+# zenrows is a web scarper that is used to deal with anti-bots and captchas in a website
+# pip install zenrows
+from zenrows import ZenRowsClient
+
+client = ZenRowsClient("ad0caea3d9ab0d10a63106391262ae9378a025dc")
+url = "https://www.acemicromatic.net/product_cat/milling/"
+params = {"js_render":"true","antibot":"true","premium_proxy":"true"}
+
+page = client.get(url, params=params)
+
+print(page.text)
+
+# website is accessed using API
+
+# checking if the request was successfull
+print(page.status_code)
+
+# results in 200, that is, the request was successfully processed
+
+# parsing the html
+html_parsed = BeautifulSoup(page.content, 'lxml')
+print(html_parsed.prettify())
+
+# extracting the products and model names as main_menu
+main_menu = html_parsed.find('li',id = 'mega-menu-item-3891')
+print(main_menu.prettify())
+
+# extracting models of drill tap machining centers as sub_menu1
+sub_menu1 = main_menu.find('li', id = "mega-menu-item-3784")
+print(sub_menu1.prettify())
+
+# creating a list
+Drill_Tap_Machining_Centers = []
+SPARK = sub_menu1.find('li', id = 'mega-menu-item-3892')
+Drill_Tap_Machining_Centers.append(SPARK.text)
+
+SPARKXL = sub_menu1.find('li', id = 'mega-menu-item-3893')
+Drill_Tap_Machining_Centers.append(SPARKXL.text)
+
+DTC400 = sub_menu1.find('li', id = 'mega-menu-item-3894')
+Drill_Tap_Machining_Centers.append(DTC400.text)
+
+DTC400XL = sub_menu1.find('li', id = 'mega-menu-item-3895')
+Drill_Tap_Machining_Centers.append(DTC400XL.text)
+
+DTC400LXL = sub_menu1.find('li', id = 'mega-menu-item-3896')
+Drill_Tap_Machining_Centers.append(DTC400LXL.text)
+
+DTC500LXL = sub_menu1.find('li', id = 'mega-menu-item-3897')
+Drill_Tap_Machining_Centers.append(DTC500LXL.text)
+
+TVC540 = sub_menu1.find('li', id = 'mega-menu-item-3898')
+Drill_Tap_Machining_Centers.append(TVC540.text)
+
+print(Drill_Tap_Machining_Centers)
+
+# result ['SPARK', 'SPARK XL', 'DTC-400', 'DTC-400 XL', 'DTC-400L XL', 'DTC-500L XL', 'TCV-540']
+
+# adding models of Vertical Maching Centers to sub_menu2
+sub_menu2 = main_menu.find('li', id = "mega-menu-item-3619")
+print(sub_menu2.prettify())
+
+# creating a list
+Vertical_Machining_Centers = []
+a = sub_menu2.find('li', id = 'mega-menu-item-3899')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3900')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3901')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3902')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3903')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3904')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3905')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3906')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3907')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3908')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3909')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3910')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3911')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3912')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3913')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3914')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3915')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3916')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3917')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3918')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3919')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3920')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3921')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3922')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3923')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3924')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3925')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3926')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3927')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3928')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3929')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3930')
+Vertical_Machining_Centers.append(a.text)
+
+a = sub_menu2.find('li', id = 'mega-menu-item-3931')
+Vertical_Machining_Centers.append(a.text)
+
+print(Vertical_Machining_Centers)
+
+# result ['430 V', 'MCV-300', 'MCV-350', 'SUPER WINNER', 'MCV-400', 'MCV-400F', 'MCV-400 XL', 'MCV-450', 'MCV-450 XL', 'ACER', 'ACER XL', 'MCV-550L', 'MCV-650', 'MCV-700N', 'MCV-700N L', 'MCV-700', 'MCV-800', '540V', '730V', '740V', '740V DM', '850V', '1060V', '1260V', '1580V', '1690V', 'ACER-50', 'MCV-550L-50', 'MCV-650-50', 'MCV-700N-50', 'MCV-700N L-50', 'MCV-700-50', 'MCV-800-50']
+
+# sub_menu3 for models of Twin Spindle VMC
+sub_menu3 = main_menu.find('li', id = 'mega-menu-item-3625')
+print(sub_menu3.prettify())
+
+# list
+Twin_Spindle_VMC = []
+b = sub_menu3.find("li", id = "mega-menu-item-3932")
+Twin_Spindle_VMC.append(b.text)
+
+b = sub_menu3.find("li", id = "mega-menu-item-3933")
+Twin_Spindle_VMC.append(b.text)
+
+b = sub_menu3.find("li", id = "mega-menu-item-3934")
+Twin_Spindle_VMC.append(b.text)
+
+b = sub_menu3.find("li", id = "mega-menu-item-3935")
+Twin_Spindle_VMC.append(b.text)
+
+b = sub_menu3.find("li", id = "mega-menu-item-3936")
+Twin_Spindle_VMC.append(b.text)
+
+b = sub_menu3.find("li", id = "mega-menu-item-3937")
+Twin_Spindle_VMC.append(b.text)
+
+print(Twin_Spindle_VMC)
+
+# result ['Gemini Mini S', 'Gemini Mini L', 'Gemini Jr.', 'Gemini Jr. XL', 'Gemini XL', 'Gemini Max']
+
+# sub_menu4 for 5 axes VMC
+sub_menu4 = main_menu.find('li', id = 'mega-menu-item-3626')
+print(sub_menu4.prettify())
+
+# list
+Five_Axes_VMC = []
+c = sub_menu4.find('li', id = 'mega-menu-item-3938')
+Five_Axes_VMC.append(c.text)
+print(Five_Axes_VMC)
+
+# result ['GV-60-5C']
+
+# sub_menu5 for Special VMC
+sub_menu5 = main_menu.find('li', id = 'mega-menu-item-3627')
+print(sub_menu5.prettify())
+
+# list
+Special_VMC = []
+d = sub_menu5.find('li', id = 'mega-menu-item-3939')
+Special_VMC.append(d.text)
+
+d = sub_menu5.find('li', id = 'mega-menu-item-3940')
+Special_VMC.append(d.text)
+
+print(Special_VMC)
+
+# result ['DM-800', 'LEADER-400XL']
+
+#sub_menu6 for Double Column
+sub_menu6 = main_menu.find('li', id = 'mega-menu-item-3628')
+print(sub_menu6.prettify())
+
+# list of models
+Double_Column = []
+e = sub_menu6.find('li', id = 'mega-menu-item-3941')
+Double_Column.append(e.text)
+
+e = sub_menu6.find('li', id = 'mega-menu-item-3942')
+Double_Column.append(e.text)
+
+e = sub_menu6.find('li', id = 'mega-menu-item-3943')
+Double_Column.append(e.text)
+
+e = sub_menu6.find('li', id = 'mega-menu-item-3944')
+Double_Column.append(e.text)
+
+e = sub_menu6.find('li', id = 'mega-menu-item-3945')
+Double_Column.append(e.text)
+
+print(Double_Column)
+
+# result ['DC-2512', 'DC-2516', 'DC-3016', 'DC-3020', 'DC-4020']
+
+# sub_menu7 for Horizontal Machining Centers
+sub_menu7 = main_menu.find('li', id = "mega-menu-item-3629")
+print(sub_menu7.prettify())
+
+# list of models
+Horizontal_Machinery = []
+f = sub_menu7.find('li', id = 'mega-menu-item-3946')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3947')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3948')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3949')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3950')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3951')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3952')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3953')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3954')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3955')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3956')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3957')
+Horizontal_Machinery.append(f.text)
+
+f = sub_menu7.find('li', id = 'mega-menu-item-3958')
+Horizontal_Machinery.append(f.text)
+
+print(Horizontal_Machinery)
+
+# result ['PROTON', 'HMC-400XL', 'CMH-400', 'CMH-400 XL', 'CMH-500', 'CMH-500-50', 'CMH-500 XL', 'CMH-500 XL-50', 'MCH-400 XL', 'MCH-500L', 'MCH-500L-50', 'MCH-630', 'MCH-800']
+
+# craeting a dataframe
+import pandas as pd
+Products = pd.DataFrame()
+
+# combining all the models' lists into one
+model_name = []
+model_name.append(Drill_Tap_Machining_Centers)
+model_name.append(Vertical_Machining_Centers)
+model_name.append(Twin_Spindle_VMC)
+model_name.append(Five_Axes_VMC)
+model_name.append(Special_VMC)
+model_name.append(Double_Column)
+model_name.append(Horizontal_Machinery)
+
+model_name = pd.DataFrame(model_name)
+model_name = model_name.stack()
+
+# adding model name as a column in the dataframe
+Products['model_name'] = model_name
+print(Products)
+
+# Travel (X/Y/Z)
+x_travel = [300,400,500,500,700,1000,500,400,400,400,500,600,600,600,800,800,800,800,1000,1020,1500,1250,1500,2000,500,750,700,760,800,1000,1250,1500,1630,800,1000,1020,1250,1500,1500,2000,400,600,500,500,600,750,650,1000,600,2700,2700,3200,3200,4200,500,600,600,600,800,800,800,800,610,800,800,1000,1500]
+y_travel = [250,300,400,400,400,400,400,300,350,350,400,450,450,450,450,450,510,510,550,700,700,700,700,810,400,300,400,425,510,600,600,800,910,510,550,650,700,700,700,810,400,450,450,450,450,500,600,800,450,1450,1700,1700,2200,2200,400,500,500,500,600,600,600,600,610,800,780,900,1200]
+z_travel = [250,250,320,320,320,320,320,400,300,450,500,500,500,500,500,500,500,500,550,650,700,600,600,810,450,400,460,470,500,600,600,600,810,500,550,600,600,600,700,810,500,500,600,600,600,600,500,500,500,'800/1000','800/1000','800/1000','800/1000',1000,400,500,500,500,600,600,600,600,650,800,800,910,1300]
+
+# adding travel to the dataframe
+Products['x_travels'] = x_travel
+Products['y_travels'] = y_travel
+Products['z_travels'] = z_travel
+
+print(Products)
+
+#converting the data frame to csv
+Products.to_csv("Products.csv")
